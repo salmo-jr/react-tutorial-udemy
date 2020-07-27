@@ -54,6 +54,25 @@ const app = props => {
       cursor: 'pointer'
     }
 
+    let persons = null;
+    if (personsVisibility.showPersons){
+      persons = (
+        <div>
+          <Person
+            name={personsState.persons[0].name}
+            age={personsState.persons[0].age} />
+          <Person
+            name={personsState.persons[1].name}
+            age={personsState.persons[1].age}
+            click={switchNameHandler.bind(this, "salmo.jr")}
+            changed={nameChangedHandler}>Hobbies: Play soccer</Person>
+          <Person
+            name={personsState.persons[2].name}
+            age={personsState.persons[2].age} />
+        </div>
+      );
+    }
+
     // PREFER TO USE BIND THAN ARROW FUNCTION
     return (
       <div className="App">
@@ -61,24 +80,8 @@ const app = props => {
         <p>This is really working!</p>
         <button
           style={style}
-          onClick={tooglePersonsHandler}>Toggle Persons</button> 
-        {
-          personsVisibility.showPersons ?
-          <div>
-            <Person
-              name={personsState.persons[0].name}
-              age={personsState.persons[0].age} />
-            <Person
-              name={personsState.persons[1].name}
-              age={personsState.persons[1].age}
-              click={switchNameHandler.bind(this, "salmo.jr")}
-              changed={nameChangedHandler}>Hobbies: Play soccer</Person>
-            <Person
-              name={personsState.persons[2].name}
-              age={personsState.persons[2].age} />
-          </div> : null
-        }
-        
+          onClick={tooglePersonsHandler}>Toggle Persons</button>
+        {persons}
       </div>
     );
     //return React.createElement('div',{className:"App"}, 'text');
