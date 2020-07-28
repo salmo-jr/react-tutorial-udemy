@@ -19,19 +19,22 @@ const app = props => {
 
     console.log(personsState, otherState);
 
-    const nameChangedHandler = (event) => {
-      setPersonsState(
-        {
-          persons: [
-            {id: 'srth', name: 'Salmo', age: 38},
-            {id: 'aerh', name: event.target.value, age: 16},
-            {id: '34tv', name: 'Alessandra', age: 46}
-          ]
-        });
+    const nameChangedHandler = (event, id) => {
+      const personIndex = personsState.persons.findIndex(p => {
+        return p.id === id;
+      });
+
+      const person = {...personsState.persons[personIndex]};
+      person.name = event.target.value;
+
+      const newPersons = [...personsState.persons];
+      newPersons[personIndex] = person;
+
+      setPersonsState({ persons: newPersons });
     }
 
     const deletePersonHandler = (personIndex) => {
-      const newPersons = [... personsState.persons];
+      const newPersons = [...personsState.persons];
       newPersons.splice(personIndex, 1);
       setPersonsState({persons: newPersons});
     }
@@ -58,7 +61,8 @@ const app = props => {
                 click={deletePersonHandler.bind(this, index)}
                 name={person.name}
                 age={person.age}
-                key={person.id} />
+                key={person.id}
+                changed={(event) => nameChangedHandler(event, person.id)} />
             })
           }
         </div>
