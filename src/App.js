@@ -19,18 +19,6 @@ const app = props => {
 
     console.log(personsState, otherState);
 
-    const switchNameHandler = (newName) => {
-      //console.log('Was clicked!');
-      setPersonsState(
-        {
-          persons: [
-            {name: newName, age: 38},
-            {name: 'Victor', age: 16},
-            {name: 'Alessandra', age: 46}
-          ]
-        });
-    }
-
     const nameChangedHandler = (event) => {
       setPersonsState(
         {
@@ -40,6 +28,12 @@ const app = props => {
             {name: 'Alessandra', age: 46}
           ]
         });
+    }
+
+    const deletePersonHandler = (personIndex) => {
+      const newPersons = personsState.persons;
+      newPersons.splice(personIndex, 1);
+      setPersonsState({persons: newPersons});
     }
 
     const tooglePersonsHandler = () => {
@@ -59,8 +53,9 @@ const app = props => {
       persons = (
         <div>
           {
-            personsState.persons.map(person => {
+            personsState.persons.map((person, index) => {
               return <Person
+                click={deletePersonHandler.bind(this, index)}
                 name={person.name}
                 age={person.age} />
             })
