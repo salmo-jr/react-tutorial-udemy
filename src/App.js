@@ -5,9 +5,9 @@ import Person from './Person/Person';
 const app = props => {
     const [personsState, setPersonsState] = useState({
       persons: [
-        {name: 'Salmo', age: 38},
-        {name: 'Victor', age: 16},
-        {name: 'Alessandra', age: 36}
+        {id: 'srth', name: 'Salmo', age: 38},
+        {id: 'aerh', name: 'Victor', age: 16},
+        {id: '34tv', name: 'Alessandra', age: 36}
       ]
     });
 
@@ -23,9 +23,9 @@ const app = props => {
       setPersonsState(
         {
           persons: [
-            {name: 'Salmo', age: 38},
-            {name: event.target.value, age: 16},
-            {name: 'Alessandra', age: 46}
+            {id: 'srth', name: 'Salmo', age: 38},
+            {id: 'aerh', name: event.target.value, age: 16},
+            {id: '34tv', name: 'Alessandra', age: 46}
           ]
         });
     }
@@ -57,7 +57,8 @@ const app = props => {
               return <Person
                 click={deletePersonHandler.bind(this, index)}
                 name={person.name}
-                age={person.age} />
+                age={person.age}
+                key={person.id} />
             })
           }
         </div>
