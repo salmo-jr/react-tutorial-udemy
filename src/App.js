@@ -17,8 +17,6 @@ const app = props => {
 
     const [otherState, setOtherState] = useState('some other value');
 
-    console.log(personsState, otherState);
-
     const nameChangedHandler = (event, id) => {
       const personIndex = personsState.persons.findIndex(p => {
         return p.id === id;
@@ -44,7 +42,8 @@ const app = props => {
     }
 
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -67,6 +66,7 @@ const app = props => {
           }
         </div>
       );
+      style.backgroundColor = 'red';
     }
 
     // PREFER TO USE BIND THAN ARROW FUNCTION
