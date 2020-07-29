@@ -69,11 +69,15 @@ const app = props => {
       style.backgroundColor = 'red';
     }
 
+    const classes = [];
+    if (personsState.persons.length <= 2) classes.push('red');
+    if (personsState.persons.length <= 1) classes.push('bold');
+
     // PREFER TO USE BIND THAN ARROW FUNCTION
     return (
       <div className="App">
         <h1>Hi, I'm a React App.</h1>
-        <p>This is really working!</p>
+        <p className={classes.join(' ')}>This is really working!</p>
         <button
           style={style}
           onClick={tooglePersonsHandler}>Toggle Persons</button>
