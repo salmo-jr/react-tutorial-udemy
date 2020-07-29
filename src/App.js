@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import Radium from 'radium';
 import Person from './Person/Person';
 
 const app = props => {
@@ -47,7 +48,11 @@ const app = props => {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover':{
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     }
 
     let persons = null;
@@ -67,6 +72,10 @@ const app = props => {
         </div>
       );
       style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      };
     }
 
     const classes = [];
@@ -87,4 +96,4 @@ const app = props => {
     //return React.createElement('div',{className:"App"}, 'text');
 }
 
-export default app;
+export default Radium(app);
