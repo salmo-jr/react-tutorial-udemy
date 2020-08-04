@@ -1,21 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import './App.css';
 import Person from './Person/Person';
-
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
 
 const app = props => {
     const [personsState, setPersonsState] = useState({
@@ -56,19 +41,6 @@ const app = props => {
       setPersonsVisibility({showPersons: !personsVisibility.showPersons});
     }
 
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover':{
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    }
-
     let persons = null;
     if (personsVisibility.showPersons){
       persons = (
@@ -85,11 +57,6 @@ const app = props => {
           }
         </div>
       );
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      };
     }
 
     const classes = [];
@@ -101,9 +68,9 @@ const app = props => {
       <div className="App">
         <h1>Hi, I'm a React App.</h1>
         <p className={classes.join(' ')}>This is really working!</p>
-        <StyledButton
-          alt={personsVisibility.showPersons}
-          onClick={tooglePersonsHandler}>Toggle Persons</StyledButton>
+        <button
+          className="button"
+          onClick={tooglePersonsHandler}>Toggle Persons</button>
         {persons}
       </div>
     );
