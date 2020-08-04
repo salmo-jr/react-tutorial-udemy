@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 const app = props => {
@@ -42,6 +42,8 @@ const app = props => {
     }
 
     let persons = null;
+    let btnClass = '';
+
     if (personsVisibility.showPersons){
       persons = (
         <div>
@@ -57,19 +59,20 @@ const app = props => {
           }
         </div>
       );
+      btnClass = classes.Red;
     }
 
-    const classes = [];
-    if (personsState.persons.length <= 2) classes.push('red');
-    if (personsState.persons.length <= 1) classes.push('bold');
+    const assignedClasses = [];
+    if (personsState.persons.length <= 2) assignedClasses.push(classes.red);
+    if (personsState.persons.length <= 1) assignedClasses.push(classes.bold);
 
     // PREFER TO USE BIND THAN ARROW FUNCTION
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a React App.</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
         <button
-          className="button"
+          className={btnClass}
           onClick={tooglePersonsHandler}>Toggle Persons</button>
         {persons}
       </div>
