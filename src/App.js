@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
 
 const app = props => {
@@ -84,14 +84,16 @@ const app = props => {
 
     // PREFER TO USE BIND THAN ARROW FUNCTION
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App.</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <button
-          style={style}
-          onClick={tooglePersonsHandler}>Toggle Persons</button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I'm a React App.</h1>
+          <p className={classes.join(' ')}>This is really working!</p>
+          <button
+            style={style}
+            onClick={tooglePersonsHandler}>Toggle Persons</button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
     //return React.createElement('div',{className:"App"}, 'text');
 }
