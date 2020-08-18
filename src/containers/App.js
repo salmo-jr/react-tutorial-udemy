@@ -55,6 +55,7 @@ const app = props => {
     return (
       <div className={classes.App}>
         <Cockpit
+          title={props.appTitle}
           showPersons={personsVisibility.showPersons}
           persons={personsState.persons}
           clicked={tooglePersonsHandler}/>
