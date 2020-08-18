@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classes from './App.css';
-import Person from '../components/Persons/Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 const app = props => {
     const [personsState, setPersonsState] = useState({
@@ -43,39 +43,21 @@ const app = props => {
     }
 
     let persons = null;
-    let btnClass = '';
 
     if (personsVisibility.showPersons){
-      persons = (
-        <div>
-          {
-            personsState.persons.map((person, index) => {
-              return <ErrorBoundary key={person.id}>
-                <Person
-                  click={deletePersonHandler.bind(this, index)}
-                  name={person.name}
-                  age={person.age}
-                  changed={(event) => nameChangedHandler(event, person.id)} />
-                </ErrorBoundary>
-            })
-          }
-        </div>
-      );
-      btnClass = classes.Red;
+      persons = <Persons
+            persons={personsState.persons}
+            clicked={deletePersonHandler}
+            changed={nameChangedHandler} />
     }
-
-    const assignedClasses = [];
-    if (personsState.persons.length <= 2) assignedClasses.push(classes.red);
-    if (personsState.persons.length <= 1) assignedClasses.push(classes.bold);
 
     // PREFER TO USE BIND THAN ARROW FUNCTION
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a React App.</h1>
-        <p className={assignedClasses.join(' ')}>This is really working!</p>
-        <button
-          className={btnClass}
-          onClick={tooglePersonsHandler}>Toggle Persons</button>
+        <Cockpit
+          showPersons={personsVisibility.showPersons}
+          persons={personsState.persons}
+          clicked={tooglePersonsHandler}/>
         {persons}
       </div>
     );
