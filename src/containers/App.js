@@ -4,6 +4,7 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import Auxiliary from '../hoc/Auxiliary';
 import withClass from '../hoc/withClass';
+import Person from '../components/Persons/Person/Person';
 
 class App extends Component {
   constructor(props){
@@ -13,7 +14,7 @@ class App extends Component {
   
   state = {
       persons: [
-        {id: 'srth', name: 'Salmo', age: 38},
+        {id: 'srth', name: 'Salmo', age: '38'},
         {id: 'aerh', name: 'Victor', age: 16},
         {id: '34tv', name: 'Alessandra', age: 36}
       ],
