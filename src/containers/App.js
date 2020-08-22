@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import Auxiliary from '../hoc/Auxiliary';
+import withClass from '../hoc/withClass';
 
 class App extends Component {
   constructor(props){
@@ -81,7 +82,7 @@ class App extends Component {
 
       // PREFER TO USE BIND THAN ARROW FUNCTION
       return (
-        <WithClass classes={classes.App}>
+        <Auxiliary>
           <button
             onClick={() => {
               this.setState({showCockpit: false});
@@ -96,10 +97,10 @@ class App extends Component {
             clicked={this.tooglePersonsHandler}/>
             : null }
           {persons}
-        </WithClass>
+        </Auxiliary>
       );
     }
     //return React.createElement('div',{className:"App"}, 'text');
 }
 
-export default App;
+export default withClass(App, classes.App);
